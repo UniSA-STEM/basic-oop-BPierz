@@ -6,3 +6,7 @@ ID: <student_id>
 Username: <username>
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
+from Asset import Asset
+
+Thing = Asset("SecurityChip")
+print(Thing)
