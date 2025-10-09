@@ -29,4 +29,9 @@ class Asset:
         else:
             return f"{self.__name}: {self.__description}"
 
+    def __eq__(self, other):
+        if self.__name == other:
+            return True
+
+
 
