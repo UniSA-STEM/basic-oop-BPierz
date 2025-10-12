@@ -8,7 +8,8 @@ This is my own work as defined by the University's Academic Misconduct Policy.
 """
 class Asset:
     def __init__(self, type):
-        self.__name = type if type in ["CryptoToken", "DataSpike", "SecurityChip", "HardwarePatch"] else "Unknown"
+
+        self.__name = type if type in ["CryptoToken", "DataSpike", "SecurityChip", "HardwarePatch", "RemovableDrive"] else "Unknown"
 
         if type == "CryptoToken":
             self.__description = "Used in battles."
@@ -23,6 +24,10 @@ class Asset:
 
         self.__encrypted = False
 
+    @property
+    def encrypted(self):
+        return self.__encrypted
+
     def __str__(self):
         if self.__encrypted:
             return f"{self.__name}: {self.__description} [encrypted]"
@@ -33,5 +38,6 @@ class Asset:
         if self.__name == other:
             return True
 
-
+    def __repr__(self):
+        return self.__name
 

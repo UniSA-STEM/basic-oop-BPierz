@@ -9,12 +9,23 @@ This is my own work as defined by the University's Academic Misconduct Policy.
 from Asset import Asset
 from Hacker import Hacker
 
-Thing = Asset("SecurityChip")
-print(Thing)
-
 Hacker1 = Hacker("Stevie McHacker")
-print(Hacker1)
+Hacker2 = Hacker("Mike Wazowski")
 
-Hacker1.find_assets("CryptoToken")
+
 Hacker1.aquire()
-Hacker1.find_assets("CryptoToken")
+Hacker2.aquire()
+
+print(Hacker1)
+print(Hacker2)
+
+Hacker1.launch_data_spike(Hacker2)
+Hacker1.launch_data_spike(Hacker2)
+
+print(Hacker1)
+print(Hacker2)
+
+Hacker1.extract_assets(Hacker2)
+
+print(Hacker1)
+print(Hacker2)
