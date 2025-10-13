@@ -12,20 +12,26 @@ from Hacker import Hacker
 Hacker1 = Hacker("Stevie McHacker")
 Hacker2 = Hacker("Mike Wazowski")
 
-
 Hacker1.aquire()
 Hacker2.aquire()
+print(Hacker1.rig)
+print(Hacker2.rig)
 
-print(Hacker1)
-print(Hacker2)
 
 Hacker1.launch_data_spike(Hacker2)
 Hacker1.launch_data_spike(Hacker2)
 
-print(Hacker1)
-print(Hacker2)
-
+print(Hacker2.rig)
 Hacker1.extract_assets(Hacker2)
+print(Hacker2.rig)
+print(Hacker1)
+
+Hacker1.encrypt_asset("DataSpike", "Inventory")
+Hacker1.upgrade_rig()
 
 print(Hacker1)
-print(Hacker2)
+Hacker1.rig.generate_asset()
+Hacker1.rig.generate_asset()
+Hacker1.rig.generate_asset()
+Hacker1.rig.generate_asset()
+print(Hacker1)

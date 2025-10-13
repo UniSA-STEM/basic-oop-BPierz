@@ -7,6 +7,7 @@ Username: <username>
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
 from Asset import Asset
+import random
 
 class Rig:
 
@@ -49,32 +50,52 @@ class Rig:
 
 
 
-    def release_unencrypted(self):
-
-        unencrypted_assets = []
+    def release_asset(self, asset = None):
 
         if self.__storage == []:
             return None
 
         unencrypted_assets =  [asset for asset in self.__storage if not asset.encrypted]
-        self.__storage = [asset for asset in self.__storage if asset.encrypted]
 
-        if unencrypted_assets == []:
-            return None
-        else:
+        if asset == None:
+            for asset in unencrypted_assets:
+                self.__storage.remove(asset)
             return unencrypted_assets
 
-    def consume_asset(self, asset):
-        self.__storage.remove(asset)
+        if asset not in unencrypted_assets:
+            return None
 
+        released_asset = asset
+        self.__storage.remove(asset)
+        return released_asset
+
+
+    def store_asset(self, asset):
+        self.__storage.append(asset)
+
+    def scan_storage(self, search):
+        for asset in self.__storage:
+            if asset.name == search:
+                return asset
+        return None
+
+    def consume_asset(self, search):
+        if self.__storage == []:
+            return None
+
+        asset = self.scan_storage(search)
+        if asset:
+            self.__storage.remove(asset)
+            return asset
+        return None
 
 
     def repair(self):
         if not self.__broken_state:
             print("No repair needed")
-        else:
-            self.__damage_counter = 0
-            self.__broken_state = False
+
+        self.__damage_counter = 0
+        self.__broken_state = False
 
     def upgrade(self):
         self.__upgrade_level += 1
@@ -85,3 +106,19 @@ class Rig:
         self.__damage_counter += 1
         if self.__damage_counter >= self.__break_threshold:
             self.__broken_state = True
+
+    def generate_asset(self):
+        asset_list = ["CryptoToken", "DataSpike", "SecurityChip", "HardwarePatch", "RemovableDrive"]
+        random_type = random.choice(asset_list)
+        generated_asset = Asset(random_type)
+        self.__storage.append(generated_asset)
+        return
+
+    def condition(self):
+        if self.__broken_state:
+            return f"Rig is Broken"
+
+
+
+
+

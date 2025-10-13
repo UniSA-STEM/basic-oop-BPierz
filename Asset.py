@@ -28,6 +28,18 @@ class Asset:
     def encrypted(self):
         return self.__encrypted
 
+    @property
+    def name(self):
+        return self.__name
+
+    @property
+    def description(self):
+        return self.__description
+
+    @encrypted.setter
+    def encrypted(self, value):
+        self.__encrypted = value
+
     def __str__(self):
         if self.__encrypted:
             return f"{self.__name}: {self.__description} [encrypted]"
@@ -35,8 +47,9 @@ class Asset:
             return f"{self.__name}: {self.__description}"
 
     def __eq__(self, other):
-        if self.__name == other:
-            return True
+        if isinstance(other, Asset):
+            if self.__name == other.__name:
+                return True
 
     def __repr__(self):
         return self.__name
