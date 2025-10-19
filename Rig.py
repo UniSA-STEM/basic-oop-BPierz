@@ -17,7 +17,6 @@ import random
 class Rig:
     """Represents a computer which generates and stores instances of Asset, used by Hacker objects to perform actions and takes attacks from other Hacker objects."""
 
-
     def __init__(self, rig_name):
         """ Initialise a new Rig object with default storage, damage level and upgrade level.
                 Args:
@@ -33,7 +32,6 @@ class Rig:
         self.__break_threshold = 2
         self.__storage_capacity = 5
 
-
     def __repr__(self):
         """ Return a representation of Rig object for readability"""
         return self.__name
@@ -41,7 +39,7 @@ class Rig:
     def __str__(self):
         """Return a formatted string displaying the rig's statys and contents"""
         return (f"---{self.__name}---\n"
-                f"Rig Damage: {round(self.__damage_counter,2)}\n"
+                f"Rig Damage: {round(self.__damage_counter, 2)}\n"
                 f"Rig Broken: {self.__broken_state}\n"
                 f"Rig Storage: {self.__storage}\n"
                 f"Rig Level: {self.__upgrade_level}\n")
@@ -170,7 +168,7 @@ class Rig:
             return None
         # Handle case if time is less than 0.
         if time <= 0:
-            print (f" Time must be greater than 0 days.")
+            print(f" Time must be greater than 0 days.")
             return None
 
         # Make a reference list of names that can be passed in to create assets.
@@ -191,7 +189,6 @@ class Rig:
 
             # Notification for asset generation.
             print(f"{self.__name}: Generated: {generated_asset}")
-
 
     def condition(self):
         """Return a descriptive string indicating the rig’s current condition."""

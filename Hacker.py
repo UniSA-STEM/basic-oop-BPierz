@@ -60,7 +60,6 @@ class Hacker:
         """ Returns the inventory of the Hacker."""
         return self.__inventory
 
-
     def scan_inventory(self, search, consume=True):
         """ Search inventory for Asset name and remove if consume = True
             Args:
@@ -158,22 +157,22 @@ class Hacker:
             Consumes a RemovableDrive.
             Args:
                 target (Hacker): The targeted Hacker."""
-        
+
         # Handle precondition if Hacker doesn't have rig. 
         if self.__rig is None:
             print(f"Cannot extract assets. {self.__name} has no Rig available\n")
             return
-        
+
         # Handle case if rig is broken. Cannot perform action
         if not target.rig.broken:
             print(f"Cannot extract assets. {target.name} rig is not broken\n")
             return
-        
+
         # Handle case if Hacker exposed, cannot perform action. 
         if self.exposed():
             print(f"Cannot extract assets. {self.__name} is exposed\n")
             return
-        
+
         # Consume asset cost of action from inventory. 
         found_drive = self.scan_inventory("RemovableDrive", True)
         # If not found in Inventory, search in Rig Storage as action allows for consump
@@ -193,7 +192,7 @@ class Hacker:
         # Add extracted assets to inventory.
         self.__inventory.extend(released_assets)
         self.__trace_level += 1
-        print (f"Successfully extracted unencrypted assets from {target.name}'s Rig\n")
+        print(f"Successfully extracted unencrypted assets from {target.name}'s Rig\n")
 
     def store_assets(self, quantity, asset_name):
         """ From inventory, stores a number of chosen Asset types in Hacker's Rig's storage.
@@ -265,12 +264,12 @@ class Hacker:
         if self.__rig is None:
             print(f"Cannot retrieve assets. {self.__name} has no Rig available\n")
             return
-        
+
         # Handle error if quantity less than or equal to zero.
         if quantity <= 0:
             print("Quantity of assets to retrieve must be positive\n")
             return
-        
+
         # Create a list of retrievable assets from storage, assets pass condition of 
         # asset.name == asset_name parameter and are not encrypted.
         storage = self.__rig.storage
@@ -291,7 +290,7 @@ class Hacker:
         # From the assets available for retrieval, make a selection based on passed in quantity parameter.
         to_move = can_retrieve[:quantity]
         retrieved = []
-        
+
         # Call release asset method from rig for every element in to_move and collect in retrieved.
         for _ in to_move:
             a = self.__rig.release_asset(asset_name)
@@ -316,8 +315,6 @@ class Hacker:
         else:
             print(f"Successfully retrieved {moved} {asset_name}(s) from rig storage.\n")
 
-
-
     def encrypt_asset(self, asset_name, location):
         """ From Hacker's Rig's storage or Inventory, encrypts a single Asset.
             Consumes one SecurityChip.
@@ -328,10 +325,12 @@ class Hacker:
         if self.exposed():
             print(f"Cannot perform encryption. {self.__name} is exposed\n")
             return
+
         # Block action if wrong method input.
         if location not in ["Storage", "Inventory"]:
             print(f"Location of asset {location} is invalid. Choose 'Storage' or 'Inventory'\n")
             return
+
         # Look for and consume cost of action asset.
         found_chip = self.scan_inventory("SecurityChip", True)
 
@@ -354,6 +353,7 @@ class Hacker:
                 item.encrypted = True
                 print(f"{item.name} in Inventory successfully encrypted")
                 return
+
         # Search for available to encrypt assets in Storage. If none available, print message.
         if location == "Storage":
             encryptable_assets = [item for item in self.__rig.storage if not item.encrypted and item.name == asset_name]
@@ -366,7 +366,6 @@ class Hacker:
                 item.encrypted = True
                 print(f"{item.name} in Storage successfully encrypted")
                 return
-
 
     def decrypt_asset(self, asset_name, location):
         """ From Hacker's Rig's storage or Inventory, decrypts a single Asset.
@@ -418,7 +417,6 @@ class Hacker:
                 print(f"{item.name} in Inventory successfully decrypted")
                 return
 
-
     def repair_rig(self):
         """If damaged, repair the Hacker's Rig by consuming a CryptoToken from Inventory or Storage (Inventory first)."""
         # Handle case if Hacker has no rig.
@@ -444,7 +442,6 @@ class Hacker:
         # After all checks, report action success.
         print(f"Rig successfully repaired: {self.__rig.name}\n")
 
-
     def check_rig_condition(self):
         """ Return the current, readable condition of the Hacker's Rig, if present."""
 
@@ -454,7 +451,6 @@ class Hacker:
             return
         # Print the call of  rig.condition() method to display rig condition output.
         print(self.__rig.condition())
-
 
     def lay_low(self, time):
         """ Reduce trace level by one and report exposure status changes

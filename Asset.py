@@ -7,6 +7,7 @@ Username: PIEBY002
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
 
+
 # Creating class Asset
 class Asset:
     """ Represents a digital asset used by hackers and rigs.
@@ -15,15 +16,15 @@ class Asset:
 
     # Class variables constant across all instances.
 
-    ASSET_NAMES = ["CryptoToken", "DataSpike", "SecurityChip", "HardwarePatch", "RemovableDrive"] # Acceptable Asset object names stored here.
+    ASSET_NAMES = ["CryptoToken", "DataSpike", "SecurityChip", "HardwarePatch",
+                   "RemovableDrive"]  # Acceptable Asset object names stored here.
     DESCRIPTIONS = {
-        "CryptoToken":   "Used to acquire and repair rigs",
-        "DataSpike":     "Used in battles",
-        "SecurityChip":  "Used to encrypt or decrypt assets",
+        "CryptoToken": "Used to acquire and repair rigs",
+        "DataSpike": "Used in battles",
+        "SecurityChip": "Used to encrypt or decrypt assets",
         "HardwarePatch": "Used to upgrade rigs",
-        "RemovableDrive":"Found in rigs and used for extraction",
-    } # A dictionary of descriptions tied to Asset object names.
-
+        "RemovableDrive": "Found in rigs and used for extraction",
+    }  # A dictionary of descriptions tied to Asset object names.
 
     def __init__(self, asset_name):
         """ Initialise a new Asset.
@@ -81,4 +82,3 @@ class Asset:
             return f"{self.__name} [E]"
         else:
             return f"{self.__name}"
-

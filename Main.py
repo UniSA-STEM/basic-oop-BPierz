@@ -115,4 +115,3 @@ Hacker2.rig.store_asset(Asset("RemovableDrive"))
 Hacker2.extract_assets(Hacker1)
 print(Hacker1.rig)
 print(Hacker2)
-
